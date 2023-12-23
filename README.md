@@ -1,16 +1,15 @@
 # Bài Tập Lớn Nhóm 27: Nhập Môn Khoa Học Dữ Liệu
 
 ## **Mô Tả Dự Án**
-Dự án này tập trung vào việc **crawl và lưu trữ dữ liệu laptop**, tạo cơ sở dữ liệu đa dạng để hỗ trợ người dùng trong việc tìm kiếm và nhận gợi ý về các sản phẩm laptop phù hợp.
+Dự án này tập trung vào việc **crawl và lưu trữ dữ liệu laptop**, tạo cơ sở dữ liệu để hỗ trợ người dùng trong việc tìm kiếm và nhận gợi ý về các sản phẩm laptop phù hợp.
 
 ## **Các Bước Thực Hiện**
 
 ### **Bước 1: Crawl Dữ Liệu**
-
+**Công cụ**: Selenium, Requests
 #### **1.1 Lấy Danh Sách Link Laptop**
 - **File**: `link_crawler.py`
 - **Nguồn**: [Laptop vs Laptop](https://laptopvslaptop.com/laptop-finder)
-- **Công cụ**: Selenium, Requests
 
 #### **1.2 Thu Thập Thông Tin Laptop**
 - **File**: `data_crawler.py`
