@@ -7,8 +7,8 @@ from selenium.common.exceptions import NoSuchElementException
 import time
 
 def link_crawler():
-    # list_checkbox = ['12 inches or less', '13 inches', '14 inches', '15 inches', '16 inches', '17 inches or more']
-    list_checkbox = ['macOS']
+    list_checkbox = ['12 inches or less', '13 inches', '14 inches', '15 inches', '16 inches', '17 inches or more']
+    # list_checkbox = ['macOS']
     list_product_links = set()
     for checkbox in list_checkbox:
         links = crawl_with_checkbox(checkbox)
@@ -50,3 +50,8 @@ def crawl_with_checkbox(checkbox):
 
     driver.quit()
     return product_links
+
+product_links = link_crawler()
+with open('product_links.txt', 'w', encoding='utf-8') as file:
+    for link in product_links:
+        file.write(link + '\n')

@@ -2,10 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 import sys
-from link_crawler import link_crawler
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 
 client = MongoClient('mongodb://localhost:27017/')  # Thiết lập kết nối với MongoDB
-db = client['laptop_database']
+db = client['laptop_database_new']
 collection = db['products']
 
 def data_crawler(url):
@@ -46,14 +47,21 @@ def download_image(img_url):
     else:
         return None
     
-#Crawl từ đây
-product_links = link_crawler()
-
-process = 0
-total = len(product_links)
-for link in product_links:
+def process_link(link):
     data_crawler(link)
-    process += 1
-    progress = (process / total) * 100
-    sys.stdout.write(f'\rTiến độ: {progress:.2f}%')
+    sys.stdout.write(f'\rProgress {progress:.2f}%')
     sys.stdout.flush()
+
+
+with open('product_links.txt', 'r') as file:
+    product_links = [line.strip() for line in file.readlines()]
+
+    process = 0
+    total = len(product_links)
+
+    with ThreadPoolExecutor() as executor:
+        futures = {executor.submit(process_link, link): link for link in product_links}
+
+        for future in as_completed(futures):
+            process += 1
+            progress = (process / total) * 100
