@@ -5,12 +5,12 @@ import sys
 from link_crawler import link_crawler
 
 client = MongoClient('mongodb://localhost:27017/')  # Thiết lập kết nối với MongoDB
-db = client['product_database']
+db = client['laptop_database']
 collection = db['products']
 
 def data_crawler(url):
     data = {}
-    required_info = ['Processor (CPU)', 'Memory (RAM)', 'Screen size', 'Screen resolution', 'Weight', 'Size (length x width x height)', 'Operating system (OS)', 'Release date', 'Amazon.com Lowest New Price']
+    required_info = ['Image', 'Processor (CPU)', 'Memory (RAM)', 'Screen size', 'Screen resolution', 'Weight', 'Size (length x width x height)', 'Operating system (OS)', 'Release date', 'Amazon.com Lowest New Price']
     for info in required_info:
         data[info] = None
     response = requests.get(url)
@@ -24,11 +24,7 @@ def data_crawler(url):
         img_url = img_tag['src']
         image_data = download_image(img_url)
         if image_data:
-            data['image_data'] = image_data
-        else: 
-            data['image_data'] = None
-    else:
-        data['image_data'] = None
+            data['Image'] = image_data
     
     name = soup.find('thead').find('th').get_text(strip=True)
     data['Name'] = name
