@@ -5,6 +5,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 import time
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from config import *
 
 def link_crawler():
     list_checkbox = ['12 inches or less', '13 inches', '14 inches', '15 inches', '16 inches', '17 inches or more']
@@ -17,13 +21,13 @@ def link_crawler():
 
 def crawl_with_checkbox(checkbox):
     # Khởi tạo WebDriver
-    webdriver_service = Service('D:\\chromedriver-win64\\chromedriver.exe')
+    webdriver_service = Service(CHROME_DRIVER_PATH)
     driver = webdriver.Chrome(service=webdriver_service)
     driver.maximize_window()
     wait = WebDriverWait(driver, 10)
 
     # Truy cập trang
-    driver.get('https://laptopvslaptop.com/laptop-finder')
+    driver.get(LAPTOP_WEB)
 
     # Chọn checkbox
     checkbox = wait.until(EC.element_to_be_clickable((By.ID, checkbox)))

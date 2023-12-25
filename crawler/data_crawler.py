@@ -2,12 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 import sys
+import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from config import *
 
 
-client = MongoClient('mongodb://localhost:27017/')  # Thiết lập kết nối với MongoDB
-db = client['laptop_database']
-collection = db['products']
+client = MongoClient(DB_URI)  # Thiết lập kết nối với MongoDB
+db = client[DB_NAME]
+collection = db[DB_COLLECTION_NAME]
 
 def data_crawler(url):
     data = {}

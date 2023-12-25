@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import json
 import pandas as pd
 
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb+srv://leduyanh:1@cluster0.z0bblpv.mongodb.net/')
 db = client['laptop_database']
 collection = db['products']
 documents = collection.find()

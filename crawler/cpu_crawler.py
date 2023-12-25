@@ -3,14 +3,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 import time
 import pandas as pd
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from config import *
 
 # Cấu hình cho webdriver
-service = Service('D:\\chromedriver-win64\\chromedriver.exe')
+service = Service(CHROME_DRIVER_PATH)
 driver = webdriver.Chrome(service=service)
 
 # Mở trang web
-driver.get('https://laptopmedia.com/top-laptop-cpu-ranking/')
-time.sleep(3)  # Đợi để trang web tải xong
+driver.get(CPU_WEB)
+time.sleep(3)
 
 # Thu thập dữ liệu CPU
 cpu_data = {}
@@ -21,7 +25,6 @@ for i in range(1, len(rows), 2):
     value = tds[2].text
     cpu_data[name] = value
 
-# Đóng trình duyệt
 driver.quit()
 
 # Chuyển dữ liệu thành DataFrame và xuất ra CSV
