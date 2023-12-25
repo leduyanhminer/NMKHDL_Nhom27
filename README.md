@@ -15,6 +15,10 @@ Dự án này tập trung vào việc **crawl và lưu trữ dữ liệu laptop*
 - **File**: `data_crawler.py`
 - **Lưu trữ**: MongoDB
 
+#### **1.3 Thu Thập Thông Tin CPU**
+- **File**: `cpu_crawler.py`
+- **Nguồn**: [Top CPU Ranking](https://laptopmedia.com/top-laptop-cpu-ranking)
+
 ### **Bước 2: Phân Loại và Gợi Ý**
 
 - **Phân loại**: Mỗi laptop được gán đa nhãn dựa trên mục đích sử dụng (gaming, văn phòng, doanh nhân, lập trình, đồ họa, v.v.).
