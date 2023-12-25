@@ -6,12 +6,12 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 client = MongoClient('mongodb://localhost:27017/')  # Thiết lập kết nối với MongoDB
-db = client['laptop_database_25_12']
+db = client['laptop_database']
 collection = db['products']
 
 def data_crawler(url):
     data = {}
-    required_info = ['Image', 'Processor (CPU)', 'Memory (RAM)', 'Screen size', 'Screen resolution', 'Weight', 'Hard drives', 'Size (length x width x height)', 'Operating system (OS)', 'Release date', 'Amazon.com Lowest New Price']
+    required_info = ['Image', 'Processor (CPU)', 'Graphics card (GPU)', 'Memory (RAM)', 'Screen size', 'Screen resolution', 'Weight', 'Hard drives', 'Size (length x width x height)', 'Operating system (OS)', 'Release date', 'Amazon.com Lowest New Price']
     for info in required_info:
         data[info] = None
     response = requests.get(url)
