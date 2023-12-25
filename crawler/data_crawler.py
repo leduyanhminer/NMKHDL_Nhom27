@@ -7,7 +7,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import *
 
-
 client = MongoClient(DB_URI)  # Thiết lập kết nối với MongoDB
 db = client[DB_NAME]
 collection = db[DB_COLLECTION_NAME]
@@ -34,13 +33,30 @@ def data_crawler(url):
     data['Name'] = name
     rows = soup.find('tbody').find_all('tr')
 
+    # for i in range(0, len(rows)):
+    #     td = rows[i].find('td', class_='table-title')
+    #     if td:
+    #         title = td.get_text(strip=True).split('?')[0]
+    #         if title in required_info:  # Kiểm tra xem tiêu đề có trong required_info không
+    #             value = rows[i+1].find('td').get_text(strip=True)
+    #             data[title] = value
+    # update fix lỗi của GPU và Windowsize
     for i in range(0, len(rows)):
         td = rows[i].find('td', class_='table-title')
         if td:
             title = td.get_text(strip=True).split('?')[0]
             if title in required_info:  # Kiểm tra xem tiêu đề có trong required_info không
-                value = rows[i+1].find('td').get_text(strip=True)
-                data[title] = value
+                value_td = rows[i+1].find('td')
+                if value_td and value_td.contents:
+                    # Kiểm tra xem phần tử đầu tiên có phải là chuỗi hay không
+                    first_content = value_td.contents[0]
+                    if isinstance(first_content, str):
+                        value = first_content.strip()
+                    else:
+                        # Nếu không phải chuỗi, sử dụng get_text để lấy toàn bộ văn bản
+                        value = value_td.get_text(strip=True)
+                    data[title] = value
+    
     collection.insert_one(data)
 
 def download_image(img_url):

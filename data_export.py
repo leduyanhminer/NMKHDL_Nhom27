@@ -3,7 +3,7 @@ import json
 import pandas as pd
 
 client = MongoClient('mongodb+srv://leduyanh:1@cluster0.z0bblpv.mongodb.net/')
-db = client['laptop_database']
+db = client['laptop_database_final']
 collection = db['products']
 documents = collection.find()
 data_to_export = []
