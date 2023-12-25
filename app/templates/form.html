@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laptop Recommendation App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Chọn Laptop Theo Nhu Cầu Của Bạn</h2>
+
+    <form action="/submit-your-choice" method="post">
+        <fieldset>
+            <legend>Chọn Nhu Cầu:</legend>
+            <div class="checkbox-group">
+                <div>
+                    <input type="checkbox" id="gaming" name="nhuCau" value="gaming">
+                    <label for="gaming">Gaming</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="hocTap" name="nhuCau" value="hocTap">
+                    <label for="hocTap">Học Tập</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="lapTrinh" name="nhuCau" value="lapTrinh">
+                    <label for="lapTrinh">Lập Trình</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="vanPhong" name="nhuCau" value="vanPhong">
+                    <label for="vanPhong">Văn Phòng</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="design" name="nhuCau" value="design">
+                    <label for="design">Design</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="doanhNhan" name="nhuCau" value="doanhNhan">
+                    <label for="doanhNhan">Doanh Nhân</label>
+                </div>
+            </div>
+        </fieldset>
+        <br>
+
+        <label for="hang">Chọn Hãng:</label>
+        <select name="hang" id="hang">
+            <option value="">Không có yêu cầu</option> <!-- Tùy chọn trống -->
+            <option value="acer">Acer</option>
+            <option value="alienware">Alienware</option>
+            <option value="apple">Apple MacBook</option>
+            <option value="asus">ASUS</option>
+            <option value="dell">Dell</option>
+            <option value="lenovo">Lenovo</option>
+            <option value="hp">HP</option>
+            <option value="lg">LG</option>
+            <option value="microsoft">Microsoft Surface</option>
+            <option value="msi">MSI</option>
+            <option value="samsung">Samsung</option>
+        </select>
+        <br><br>
+
+        <label for="gia">Chọn Khoảng Giá:</label>
+        <select name="gia" id="gia">
+            <option value="">Không có yêu cầu</option>
+            <option value="duoi10">Dưới 10 triệu</option>
+            <option value="10to15">10 - 15 triệu</option>
+            <option value="15to20">15 - 20 triệu</option>
+            <option value="20to25">20 - 25 triệu</option>
+            <option value="25to30">25 - 30 triệu</option>
+            <option value="30to40">30 - 40 triệu</option>
+            <option value="40to50">40 - 50 triệu</option>
+            <option value="tren50">Trên 50 triệu</option>
+        </select>
+        <br><br>
+
+        <input type="submit" value="Gửi Lựa Chọn">
+    </form>
+</body>
+</html>

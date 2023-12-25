@@ -1,0 +1,79 @@
+/* Style chung cho trang */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+fieldset {
+    border: none;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+/* Định dạng cho các lựa chọn nhu cầu */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+}
+
+.checkbox-group div {
+    flex: 1 1 30%;
+    display: flex;
+    align-items: center; 
+}
+
+.checkbox-group label {
+    margin-left: 5px; 
+}
+
+/* Style cho các phần tử còn lại của form */
+label, select, input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    margin: 10px;
+    vertical-align: middle;
+}
