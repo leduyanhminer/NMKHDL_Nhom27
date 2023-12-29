@@ -21,6 +21,7 @@ def submit_choice():
     hang = request.form.get('hang')
     gia = request.form.get('gia')
 
+
     return f'''
     <h1>Kết quả lựa chọn:</h1>
     <p>Nhu cầu: {nhu_cau}</p>
