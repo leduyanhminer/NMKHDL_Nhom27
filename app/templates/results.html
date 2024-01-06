@@ -20,11 +20,11 @@
         .back-button:hover {
             background-color: #0056b3;
         }
-
     </style>
 </head>
 <body>
     <h1>Kết Quả</h1>
+    <p>Số lượng kết quả thoả mãn: {{ count }}</p>
     <ul>
         {% for result in results %}
             <li>Name: {{ result['Name'] }}, Release date: {{ result['Release date'] }}, Amazon.com Lowest New Price: {{ result['Amazon.com Lowest New Price'] }}</li>

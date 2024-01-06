@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from pymongo import MongoClient
 import sys
 import os
+import re
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import *
 
@@ -25,14 +26,16 @@ def submit_choice():
     gia = request.form.get('gia')
     size = request.form.get('windowsize')
 
-    query = {
-        x: 1 for x in list_nhucau if x in nhu_cau 
-    }
+    query = {x: 1 for x in nhu_cau}
+    if hang:
+        query['Name'] = re.compile(hang, re.IGNORECASE)
+
+    count = collection.count_documents(query)
 
     results = collection.find(query, fields).limit(record_limit)
     results_list = list(results)
 
-    return render_template('results.html', results=results_list)
+    return render_template('results.html', results=results_list, count=count)
 
 if __name__ == '__main__':
     app.run(debug=True)
