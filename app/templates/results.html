@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kết Quả Tìm Kiếm</title>
+    <style>
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Kết Quả</h1>
+    <ul>
+        {% for result in results %}
+            <li>Name: {{ result['Name'] }}, Release date: {{ result['Release date'] }}, Amazon.com Lowest New Price: {{ result['Amazon.com Lowest New Price'] }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/" class="back-button">Trang Chủ</a>
+</body>
+</html>
