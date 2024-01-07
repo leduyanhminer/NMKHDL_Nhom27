@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 from pymongo import MongoClient
+from bson import ObjectId
 import sys
 import os
 import re
@@ -21,7 +22,7 @@ def index():
 
 @app.route('/submit-your-choice', methods=['POST'])
 def submit_choice():
-    nhu_cau = request.form.getlist('nhuCau') # list các nhu cầu
+    nhu_cau = request.form.getlist('nhuCau')
     hang = request.form.get('hang')
     gia = request.form.get('gia')
     size = request.form.get('windowsize')
@@ -29,6 +30,14 @@ def submit_choice():
     query = {x: 1 for x in nhu_cau}
     if hang:
         query['Name'] = re.compile(hang, re.IGNORECASE)
+
+    if gia:
+        gia_min, gia_max = [int(x) for x in gia.split(',')]
+        query['Amazon.com Lowest New Price'] = {'$gte': gia_min*1000000, '$lte': gia_max*1000000}
+
+    if size:
+        size_min, size_max = [float(x) for x in size.split(',')]
+        query['Screen size'] = {'$gte': size_min, '$lt': size_max}
 
     count = collection.count_documents(query)
 
