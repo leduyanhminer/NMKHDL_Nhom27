@@ -1,52 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Kết Quả Tìm Kiếm</title>
-    <style>
-        .back-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 16px;
-            text-decoration: none;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <h1>Kết Quả</h1>
-    <p>Số lượng kết quả thoả mãn: {{ count }}</p>
-    <ul>
-        {% for result in results %}
-            <li>
-                Name: {{ result['Name'] }},
-                Release date: {{ result['Release date'] }},
-                Price: {{ result['Price'] }},
-                Processor (CPU): {{ result['Processor (CPU)'] }},
-                Graphics card (GPU): {{ result['Graphics card (GPU)'] }},
-                Memory (RAM): {{ result['Memory (RAM)'] }},
-                Screen size: {{ result['Screen size'] }},
-                Screen resolution: {{ result['Screen resolution'] }},
-                Weight: {{ result['Weight'] }},
-                Hard drives: {{ result['Hard drives'] }},
-                Size (LxWxH): {{ result['Size (length x width x height)'] }},
-                Operating system (OS): {{ result['Operating system (OS)'] }}
-            </li>
-        {% endfor %}
-    </ul>
-
-    <a href="/" class="back-button">Trang Chủ</a>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,29 +9,41 @@
             padding: 0;
             background-color: #f4f4f4;
         }
+
         .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
             width: 80%;
             margin: auto;
             overflow: hidden;
         }
-        h1 {
-            text-align: center;
-            padding: 20px 0;
-        }
+
         .product {
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 15px;
             margin-bottom: 10px;
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
         }
         .product:hover {
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
         }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
         .back-button {
-            display: inline-block;
             padding: 10px 20px;
-            margin: 20px auto;
             font-size: 16px;
             text-decoration: none;
             color: white;
@@ -89,7 +52,6 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            text-align: center;
         }
         .back-button:hover {
             background-color: #0056b3;
@@ -99,24 +61,30 @@
 <body>
     <div class="container">
         <h1>Kết Quả</h1>
+        <div class="button-container">
+            <a href="/" class="back-button">Trang Chủ</a>
+        </div>
         <p>Số lượng laptop phù hợp: {{ count }} chiếc</p>
+        <p>Dưới đây là top 10 laptop phù hợp:</p>
         {% for result in results %}
-            <div class="product">
-                <strong>Name:</strong> {{ result['Name'] }}<br>
-                <strong>Release date:</strong> {{ result['Release date'] }}<br>
-                <strong>Price:</strong> {{ result['Price'] }}vnđ<br>
-                <strong>Processor (CPU):</strong> {{ result['Processor (CPU)'] }}<br>
-                <strong>Graphics card (GPU):</strong> {{ result['Graphics card (GPU)'] }}<br>
-                <strong>Memory (RAM):</strong> {{ result['Memory (RAM)'] }}<br>
-                <strong>Screen size:</strong> {{ result['Screen size'] }}<br>
-                <strong>Screen resolution:</strong> {{ result['Screen resolution'] }}<br>
-                <strong>Weight:</strong> {{ result['Weight'] }}<br>
-                <strong>Hard drives:</strong> {{ result['Hard drives'] }}<br>
-                <strong>Size (LxWxH):</strong> {{ result['Size (length x width x height)'] }}<br>
-                <strong>Operating system (OS):</strong> {{ result['Operating system (OS)'] }}
-            </div>
+        <div class="product">
+            <strong>Name:</strong> {{ result['Name'] }}<br>
+            <strong>Release date:</strong> {{ result['Release date'] }}<br>
+            <strong>Price:</strong> {{ result['Price'] }}vnđ<br>
+            <strong>Processor (CPU):</strong> {{ result['Processor (CPU)'] }}<br>
+            <strong>Graphics card (GPU):</strong> {{ result['Graphics card (GPU)'] }}<br>
+            <strong>Memory (RAM):</strong> {{ result['Memory (RAM)'] }}<br>
+            <strong>Screen size:</strong> {{ result['Screen size'] }}<br>
+            <strong>Screen resolution:</strong> {{ result['Screen resolution'] }}<br>
+            <strong>Weight:</strong> {{ result['Weight'] }}<br>
+            <strong>Hard drives:</strong> {{ result['Hard drives'] }}<br>
+            <strong>Size (LxWxH):</strong> {{ result['Size (length x width x height)'] }}<br>
+            <strong>Operating system (OS):</strong> {{ result['Operating system (OS)'] }}
+        </div>
         {% endfor %}
-        <a href="/" class="back-button">Trang Chủ</a>
+        <div class="button-container">
+            <a href="/" class="back-button">Trang Chủ</a>
+        </div>
     </div>
 </body>
 </html>
