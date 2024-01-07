@@ -13,7 +13,7 @@ client = MongoClient(DB_URI)
 db = client[DB_NAME]
 collection = db[DB_COLLECTION_NAME]
 list_nhucau = ["gaming", "lapTrinh", "vanPhong", "doHoa", "doanhNhan"]
-fields = {"Name":1, "Release date":1, "Amazon.com Lowest New Price":1, "_id":0}
+fields = {"Name":1, "Release date":1, "Price":1, "Processor (CPU)":1, "Graphics card (GPU)":1, "Memory (RAM)":1, "Screen size":1, "Screen resolution":1, "Weight":1,"Hard drives":1,"Size (length x width x height)":1, "Operating system (OS)":1,"_id":0}
 record_limit = 10
 
 @app.route('/')
@@ -33,7 +33,7 @@ def submit_choice():
 
     if gia:
         gia_min, gia_max = [int(x) for x in gia.split(',')]
-        query['Amazon.com Lowest New Price'] = {'$gte': gia_min*1000000, '$lte': gia_max*1000000}
+        query['Price'] = {'$gte': gia_min*1000000, '$lt': gia_max*1000000}
 
     if size:
         size_min, size_max = [float(x) for x in size.split(',')]
