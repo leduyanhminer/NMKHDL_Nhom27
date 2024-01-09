@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import *
 
+# localtestmongodb://localhost:27017
 client = MongoClient(DB_URI)  # Thiết lập kết nối với MongoDB
 db = client[DB_NAME]
 collection = db[DB_COLLECTION_NAME]
