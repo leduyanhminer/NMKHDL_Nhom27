@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, Response
 from pymongo import MongoClient
+import pymongo
 import sys
 import os
 import re
@@ -40,7 +41,8 @@ def submit_choice():
 
     count = collection.count_documents(query)
 
-    results = collection.find(query, fields).limit(record_limit)
+    # results = collection.find(query, fields).limit(record_limit)
+    results = collection.find(query, fields).sort('CPU Score', pymongo.DESCENDING).limit(record_limit)
     results_list = list(results)
 
     return render_template('results.html', results=results_list, count=count)
